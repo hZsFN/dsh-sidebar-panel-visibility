@@ -78,10 +78,13 @@ The slot is a `list`, so this plugin renders **alongside** the built-in entry-cu
 ```bash
 node --check lib/index.js
 node --check lib/client.js
-node test/storage.test.mjs
+npm test
 ```
 
-`test/storage.test.mjs` boots the `lib/client.js` factory behind a minimal `window` stub, so the tests exercise **the exact code that ships**, not a copy.
+Neither test touches a browser:
+
+- `test/storage.test.mjs` — boots the `lib/client.js` factory behind a minimal `window` stub and exercises the pure functions (toggle semantics, six failure modes degrading to empty, empty list removing the key, round-trip consistency). It tests **the exact code that ships**, not a copy.
+- `test/smoke.test.mjs` — runs `apply()` for real against a fake `react`, fake jsx runtime and fake ctx: module shape (`id`, `name`, `inject`, `apply`), slot registration options (`id`, `order`, `locale`), all eight locale dictionaries, and the component's behaviour (renders under real props, a click calls `onPinnedChange` with the right arguments, missing props don't throw).
 
 ### Layout
 
@@ -89,8 +92,10 @@ node test/storage.test.mjs
 lib/index.js    host half: an empty shell so the cordis loader can mount the plugin row
 lib/client.js   browser half: toggle component + localStorage I/O + 8 locale dictionaries
 cordis.patch.yml  bundle patch: inserts the plugin row into the profile
-test/storage.test.mjs  pure-function unit tests
+test/           pure-function unit tests + smoke test
 ```
+
+Rows use the primitives `MenuItemButton` — the same component the built-in More-menu rows use — so hover, focus rings and keyboard navigation are the host's own rather than a lookalike.
 
 ### Why not patch node_modules
 

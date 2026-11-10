@@ -26,7 +26,19 @@
       "patch": "./cordis.patch.yml"
     },
     "client": {
-      "platform": "web"
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-primitives"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-client-ui-primitives": ">=0.2.0-rc.1 <0.2.1-0 || >=0.2.1-rc.1 <0.2.2-0 || >=0.2.2-rc.1 <0.2.3-0",
+    "react": ">=18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
     }
   },
   "files": [
@@ -38,7 +50,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "node test/storage.test.mjs"
+    "test": "node test/storage.test.mjs && node test/smoke.test.mjs"
   },
   "license": "MIT",
   "repository": {

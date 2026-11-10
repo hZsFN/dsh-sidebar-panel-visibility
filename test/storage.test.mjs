@@ -36,10 +36,11 @@ let captured = null;
 globalThis.window.__ModuleLoader__ = {
 	load({ id, factory }) {
 		const fakeRequire = (spec) => {
-			// client.js 顶层只 require react / react/jsx-runtime；
+			// client.js 顶层只 require react / react/jsx-runtime / primitives；
 			// 纯函数部分不触碰它们，所以给空对象就够。
 			if (spec === "react") return {};
 			if (spec === "react/jsx-runtime") return {};
+			if (spec === "@deepseek-ai/dsh-client-ui-primitives") return {};
 			throw new Error(`unexpected require: ${spec}`);
 		};
 		captured = { id, exports: factory(fakeRequire) };

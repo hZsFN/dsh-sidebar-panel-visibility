@@ -78,10 +78,13 @@ dsh plugin --profile <profile> add link:/绝对路径/dsh-sidebar-panel-visibili
 ```bash
 node --check lib/index.js
 node --check lib/client.js
-node test/storage.test.mjs
+npm test
 ```
 
-`test/storage.test.mjs` 用一个最小 `window` 桩把 `lib/client.js` 的 factory 跑起来，测的是**真正上线的那份代码**，不是复制品。
+两个测试都不碰浏览器：
+
+- `test/storage.test.mjs` — 用最小 `window` 桩把 `lib/client.js` 的 factory 跑起来，测纯函数（切换语义、六种异常降级、空列表删键、往返一致性）。测的是**真正上线的那份代码**，不是复制品。
+- `test/smoke.test.mjs` — 用假 `react` / 假 jsx runtime / 假 ctx 把 `apply()` 真跑一遍，验证模块形状（id、`name`、`inject`、`apply`）、槽位注册参数（`id`、`order`、`locale`）、八种语言词条齐全，以及组件在给定 props 下能渲染、点击会以正确参数调用 `onPinnedChange`、缺 props 时不炸。
 
 ### 代码结构
 
@@ -89,8 +92,10 @@ node test/storage.test.mjs
 lib/index.js    主机半身：空壳，只为让 cordis loader 能加载插件行
 lib/client.js   浏览器半身：显隐开关组件 + localStorage 读写 + 8 种语言词条
 cordis.patch.yml  bundle 补丁：把插件行插进 profile
-test/storage.test.mjs  纯函数单测
+test/           纯函数单测 + 冒烟测试
 ```
+
+菜单行用的是 primitives 的 `MenuItemButton`（和内置「更多」菜单项同一个组件），所以悬停、焦点环、键盘导航都是宿主原生的，不用自己仿一套。
 
 ### 为什么不改 node_modules
 
