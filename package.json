@@ -1,6 +1,6 @@
 {
   "name": "dsh-sidebar-panel-visibility",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DSH Web 插件：在左侧栏「更多」菜单里给每个面板入口加显隐开关，状态存 localStorage 跨重启保持",
   "keywords": [
     "deepseek-harness",
