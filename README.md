@@ -101,3 +101,7 @@ test/storage.test.mjs  纯函数单测
 ## License
 
 MIT
+
+---
+
+[![](https://img.shields.io/badge/powered_by-dafeiyu-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/Dafeiyu111)

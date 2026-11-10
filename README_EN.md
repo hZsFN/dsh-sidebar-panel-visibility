@@ -101,3 +101,7 @@ The slot contract has none of those problems: the plugin is a standalone package
 ## License
 
 MIT
+
+---
+
+[![](https://img.shields.io/badge/powered_by-dafeiyu-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/Dafeiyu111)
