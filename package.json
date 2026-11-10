@@ -1,0 +1,52 @@
+{
+  "name": "dsh-sidebar-panel-visibility",
+  "version": "0.1.0",
+  "description": "DSH Web 插件：在左侧栏「更多」菜单里给每个面板入口加显隐开关，状态存 localStorage 跨重启保持",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "sidebar",
+    "panel",
+    "visibility"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README_EN.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/storage.test.mjs"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hZsFN/dsh-sidebar-panel-visibility.git"
+  },
+  "homepage": "https://github.com/hZsFN/dsh-sidebar-panel-visibility#readme",
+  "bugs": {
+    "url": "https://github.com/hZsFN/dsh-sidebar-panel-visibility/issues"
+  }
+}
